@@ -1,0 +1,180 @@
+mca1@administrator:~/my-react-app$ ls
+node_modules  package.json  package-lock.json  public  README.md  src
+mca1@administrator:~/my-react-app$ 
+mca1@administrator:~/my-react-app$ 
+mca1@administrator:~/my-react-app$ 
+mca1@administrator:~/my-react-app$ 
+mca1@administrator:~/my-react-app$ 
+mca1@administrator:~/my-react-app$ git push -u origin main
+Enter passphrase for key '/home/mca1/.ssh/id_ed25519': 
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+mca1@administrator:~/my-react-app$ 
+mca1@administrator:~/my-react-app$ git remote set-url origin https://github.com/abm570/react-devops.git
+mca1@administrator:~/my-react-app$ git push -u origin main
+Username for 'https://github.com': abm570
+Password for 'https://abm570@github.com': 
+remote: Permission to abm570/react-devops.git denied to abm570.
+fatal: unable to access 'https://github.com/abm570/react-devops.git/': The requested URL returned error: 403
+mca1@administrator:~/my-react-app$ git push -u origin main
+Username for 'https://github.com': abm570
+Password for 'https://abm570@github.com': 
+remote: Permission to abm570/react-devops.git denied to abm570.
+fatal: unable to access 'https://github.com/abm570/react-devops.git/': The requested URL returned error: 403
+mca1@administrator:~/my-react-app$ git push -u origin main
+Username for 'https://github.com': abm570
+Password for 'https://abm570@github.com': 
+Enumerating objects: 25, done.
+Counting objects: 100% (25/25), done.
+Delta compression using up to 24 threads
+Compressing objects: 100% (25/25), done.
+Writing objects: 100% (25/25), 173.58 KiB | 9.14 MiB/s, done.
+Total 25 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/abm570/react-devops.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+mca1@administrator:~/my-react-app$ sudo systemctl enable jenkins
+[sudo] password for mca1: 
+Synchronizing state of jenkins.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable jenkins
+mca1@administrator:~/my-react-app$ sudo systemctl start jenkins
+mca1@administrator:~/my-react-app$ nano Dockerfile
+mca1@administrator:~/my-react-app$ git push -u origin main
+branch 'main' set up to track 'origin/main'.
+Everything up-to-date
+mca1@administrator:~/my-react-app$ git add Dockerfile
+mca1@administrator:~/my-react-app$ git push -u origin main
+branch 'main' set up to track 'origin/main'.
+Everything up-to-date
+mca1@administrator:~/my-react-app$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   Dockerfile
+
+mca1@administrator:~/my-react-app$ git commit -m "Added docker file"
+[main f646890] Added docker file
+ 1 file changed, 11 insertions(+)
+ create mode 100644 Dockerfile
+mca1@administrator:~/my-react-app$ git push -u origin main
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 24 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 433 bytes | 433.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/abm570/react-devops.git
+   56c3941..f646890  main -> main
+branch 'main' set up to track 'origin/main'.
+mca1@administrator:~/my-react-app$ docker login
+
+USING WEB-BASED LOGIN
+
+i Info → To sign in with credentials on the command line, use 'docker login -u <username>'
+         
+
+Your one-time device confirmation code is: BVQS-ZCQK
+Press ENTER to open your browser or submit your device code here: https://login.docker.com/activate
+
+Waiting for authentication in the browser…
+                                                             
+WARNING! Your credentials are stored unencrypted in '/home/mca1/.docker/config.json'.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/go/credential-store/
+
+Login Succeeded
+mca1@administrator:~/my-react-app$ minikube start
+😄  minikube v1.37.0 on Ubuntu 24.04
+✨  Using the docker driver based on existing profile
+👍  Starting "minikube" primary control-plane node in "minikube" cluster
+🚜  Pulling base image v0.0.48 ...
+🔄  Restarting existing docker container for "minikube" ...
+🐳  Preparing Kubernetes v1.34.0 on Docker 28.4.0 ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image docker.io/kubernetesui/metrics-scraper:v1.0.8
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+    ▪ Using image docker.io/kubernetesui/dashboard:v2.7.0
+💡  Some dashboard features require the metrics-server addon. To enable all features please run:
+
+	minikube addons enable metrics-server
+
+🌟  Enabled addons: storage-provisioner, dashboard, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+mca1@administrator:~/my-react-app$ kubectl get nodes
+NAME       STATUS   ROLES           AGE     VERSION
+minikube   Ready    control-plane   3d23h   v1.34.0
+mca1@administrator:~/my-react-app$ kubectl create deployment react-app --image=amit570/react-app:latest
+deployment.apps/react-app created
+mca1@administrator:~/my-react-app$ kubectl expose deployment react-app \
+> --type=NodePort \
+> --name=react-service \
+> --port=80 \
+> --target-port=80
+service/react-service exposed
+mca1@administrator:~/my-react-app$ minikube dashboard
+🤔  Verifying dashboard health ...
+🚀  Launching proxy ...
+🤔  Verifying proxy health ...
+🎉  Opening http://127.0.0.1:34091/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/ in your default browser...
+Gtk-Message: 12:33:29.573: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[42702, Main Thread] WARNING: GTK+ module /snap/firefox/7559/gnome-platform/usr/lib/gtk-2.0/modules/libcanberra-gtk-module.so cannot be loaded.
+GTK+ 2.x symbols detected. Using GTK+ 2.x and GTK+ 3 in the same process is not supported.: 'glib warning', file /build/firefox/parts/firefox/build/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox_firefox:42702): Gtk-WARNING **: 12:33:29.651: GTK+ module /snap/firefox/7559/gnome-platform/usr/lib/gtk-2.0/modules/libcanberra-gtk-module.so cannot be loaded.
+GTK+ 2.x symbols detected. Using GTK+ 2.x and GTK+ 3 in the same process is not supported.
+Gtk-Message: 12:33:29.651: Failed to load module "canberra-gtk-module"
+[42702, Main Thread] WARNING: GTK+ module /snap/firefox/7559/gnome-platform/usr/lib/gtk-2.0/modules/libcanberra-gtk-module.so cannot be loaded.
+GTK+ 2.x symbols detected. Using GTK+ 2.x and GTK+ 3 in the same process is not supported.: 'glib warning', file /build/firefox/parts/firefox/build/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox_firefox:42702): Gtk-WARNING **: 12:33:29.652: GTK+ module /snap/firefox/7559/gnome-platform/usr/lib/gtk-2.0/modules/libcanberra-gtk-module.so cannot be loaded.
+GTK+ 2.x symbols detected. Using GTK+ 2.x and GTK+ 3 in the same process is not supported.
+Gtk-Message: 12:33:29.652: Failed to load module "canberra-gtk-module"
+^C
+mca1@administrator:~/my-react-app$ minikube service react-service
+┌───────────┬───────────────┬─────────────┬───────────────────────────┐
+│ NAMESPACE │     NAME      │ TARGET PORT │            URL            │
+├───────────┼───────────────┼─────────────┼───────────────────────────┤
+│ default   │ react-service │ 80          │ http://192.168.49.2:31328 │
+└───────────┴───────────────┴─────────────┴───────────────────────────┘
+🎉  Opening service default/react-service in default browser...
+mca1@administrator:~/my-react-app$ Gtk-Message: 12:34:01.057: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[43141, Main Thread] WARNING: GTK+ module /snap/firefox/7559/gnome-platform/usr/lib/gtk-2.0/modules/libcanberra-gtk-module.so cannot be loaded.
+GTK+ 2.x symbols detected. Using GTK+ 2.x and GTK+ 3 in the same process is not supported.: 'glib warning', file /build/firefox/parts/firefox/build/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox_firefox:43141): Gtk-WARNING **: 12:34:01.100: GTK+ module /snap/firefox/7559/gnome-platform/usr/lib/gtk-2.0/modules/libcanberra-gtk-module.so cannot be loaded.
+GTK+ 2.x symbols detected. Using GTK+ 2.x and GTK+ 3 in the same process is not supported.
+Gtk-Message: 12:34:01.100: Failed to load module "canberra-gtk-module"
+[43141, Main Thread] WARNING: GTK+ module /snap/firefox/7559/gnome-platform/usr/lib/gtk-2.0/modules/libcanberra-gtk-module.so cannot be loaded.
+GTK+ 2.x symbols detected. Using GTK+ 2.x and GTK+ 3 in the same process is not supported.: 'glib warning', file /build/firefox/parts/firefox/build/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox_firefox:43141): Gtk-WARNING **: 12:34:01.100: GTK+ module /snap/firefox/7559/gnome-platform/usr/lib/gtk-2.0/modules/libcanberra-gtk-module.so cannot be loaded.
+GTK+ 2.x symbols detected. Using GTK+ 2.x and GTK+ 3 in the same process is not supported.
+Gtk-Message: 12:34:01.100: Failed to load module "canberra-gtk-module"
+^C
+mca1@administrator:~/my-react-app$ minikube dashboard
+🤔  Verifying dashboard health ...
+🚀  Launching proxy ...
+🤔  Verifying proxy health ...
+🎉  Opening http://127.0.0.1:42497/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/ in your default browser...
+Gtk-Message: 12:35:02.447: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+[44286, Main Thread] WARNING: GTK+ module /snap/firefox/7559/gnome-platform/usr/lib/gtk-2.0/modules/libcanberra-gtk-module.so cannot be loaded.
+GTK+ 2.x symbols detected. Using GTK+ 2.x and GTK+ 3 in the same process is not supported.: 'glib warning', file /build/firefox/parts/firefox/build/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox_firefox:44286): Gtk-WARNING **: 12:35:02.486: GTK+ module /snap/firefox/7559/gnome-platform/usr/lib/gtk-2.0/modules/libcanberra-gtk-module.so cannot be loaded.
+GTK+ 2.x symbols detected. Using GTK+ 2.x and GTK+ 3 in the same process is not supported.
+Gtk-Message: 12:35:02.486: Failed to load module "canberra-gtk-module"
+[44286, Main Thread] WARNING: GTK+ module /snap/firefox/7559/gnome-platform/usr/lib/gtk-2.0/modules/libcanberra-gtk-module.so cannot be loaded.
+GTK+ 2.x symbols detected. Using GTK+ 2.x and GTK+ 3 in the same process is not supported.: 'glib warning', file /build/firefox/parts/firefox/build/toolkit/xre/nsSigHandlers.cpp:201
+
+(firefox_firefox:44286): Gtk-WARNING **: 12:35:02.487: GTK+ module /snap/firefox/7559/gnome-platform/usr/lib/gtk-2.0/modules/libcanberra-gtk-module.so cannot be loaded.
+GTK+ 2.x symbols detected. Using GTK+ 2.x and GTK+ 3 in the same process is not supported.
+Gtk-Message: 12:35:02.487: Failed to load module "canberra-gtk-module"
+
+
